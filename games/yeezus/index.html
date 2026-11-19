@@ -1,11 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>YE: The Unofficial Game</title>
+<title>Ye Stomps the Haters</title>
 <style>
-  html, body { margin: 0; height: 100%; background: #07040d; overflow: hidden; }
+  :root { --bg: #07040d; color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: var(--bg); overflow: hidden; }
   canvas {
     position: absolute; left: 50%; top: 50%;
     transform: translate(-50%, -50%);
@@ -14,8 +12,6 @@
     cursor: crosshair;
   }
 </style>
-</head>
-<body>
 <canvas id="c"></canvas>
 <script>
 (() => {
@@ -146,7 +142,8 @@ const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
 
 function resize() {
-  const s = Math.min(innerWidth / W, innerHeight / H);
+  // 16px gutter on every side so the canvas never touches a phone edge
+  const s = Math.max(0.1, Math.min((innerWidth - 32) / W, (innerHeight - 32) / H));
   const dpr = window.devicePixelRatio || 1;
   canvas.style.width = Math.floor(W * s) + 'px';
   canvas.style.height = Math.floor(H * s) + 'px';
@@ -1100,5 +1097,3 @@ newTicker();
 requestAnimationFrame(frame);
 })();
 </script>
-</body>
-</html>
